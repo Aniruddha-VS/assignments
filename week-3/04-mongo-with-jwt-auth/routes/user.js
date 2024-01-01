@@ -2,6 +2,7 @@ const {User, Course} = require("../db")
 const { Router } = require("express");
 const router = Router();
 const userMiddleware = require("../middleware/user");
+const jwt = require("jsonwebtoken")
 const JWT_SECRET_KEY = require('../config')
 
 
@@ -27,17 +28,17 @@ router.post('/signin', (req, res) => {
     // Implement admin signup logic
     const username = req.headers.username;
     const password = req.headers.password;
-
     User.findOne({
         username: username,
         password: password
-    }).then((value) => {
+    }).then(() => {
         const token = jwt.sign({
-            username
+            username: username
         }, JWT_SECRET_KEY)
 
         res.json({token})
-    }).catch(()=> {
+    }).catch((e)=> {
+        console.log(e)
         res.status(411).json({msg: "Incorrect username or password"})
     })
 
@@ -68,7 +69,7 @@ router.post('/courses/:courseId', userMiddleware, async (req, res) => {
 router.get('/purchasedCourses', userMiddleware, async (req, res) => {
     // Implement fetching purchased courses logic
     const user = await User.findOne({
-        username: req.headers.username
+        username: req.username
     })
 
     const courses = await Course.find({

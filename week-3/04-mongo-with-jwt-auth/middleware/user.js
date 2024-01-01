@@ -11,6 +11,7 @@ function userMiddleware(req, res, next) {
     const jwtToken = words[1];
     const decodedValue = jwt.verify(jwtToken, JWT_SECRET_KEY)
     if (decodedValue.username) {
+        req.username = decodedValue.username
         next()
     } else {
         res.status(403).json({msg: "You are not authenticated."})

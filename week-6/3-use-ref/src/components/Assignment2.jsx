@@ -12,6 +12,11 @@ export function Assignment2() {
         renders.current = renders.current + 1
         forceRender(Math.random());
     };
+
+
+
+
+    
    
 
     return (

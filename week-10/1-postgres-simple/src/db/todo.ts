@@ -1,4 +1,5 @@
 import { client } from "..";
+import "dotenv/config";
 /*
  * Function should insert a new todo for this user
  * Should return a todo object

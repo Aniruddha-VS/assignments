@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
-import { env } from "hono/adapter";
+import { createPostInput, updatePostInput } from "@asurse/common-app"; }
 const app = new Hono<{
   Bindings: {
     DATABASE_URL: string;
@@ -20,6 +20,13 @@ app.post("/", async (c) => {
   });
 
   const data = await c.req.json();
+
+  const {success} = createPostInput.safeParse(data)
+  if (!success) {
+    c.status(400);
+    return c.json({error: "invalid input"})
+  }
+
 
   const post = await prisma.post.create({
     data: {
@@ -70,6 +77,11 @@ app.put("/:id", async (c) => {
   const postId = Number(c.req.param("id"));
 
   const body = await c.req.json();
+  const {success} = updatePostInput.safeParse(body)
+  if (!success) {
+    c.status(400);
+    return c.json({error: "invalid input"})
+  }
 
   const prisma = new PrismaClient({
     datasourceUrl: c.env?.DATABASE_URL,

@@ -1,0 +1,19 @@
+name = "blogs-app"
+compatibility_date = "2023-12-01"
+
+[vars]
+DATABASE_URL = "prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiNDhiNTFhMDUtMWEzYS00NTAwLTljNjgtZjM1N2VjZTM5ODc1IiwidGVuYW50X2lkIjoiODk0YWI0OGNkNmJhNGYwYTdiMjI3YzdmZGY3YjZmZjk1ZTMzNzliOTFjOGI1Y2ZiNGQxZTdiYzFlZjIwNDczZiIsImludGVybmFsX3NlY3JldCI6ImVlNGI5MGJhLTViYmItNGY3Yi04NTFiLTRlZDU0NDM5MmFmMiJ9.DA686KivmVb-YOtSKLNdojZjvBsnSsamGKbP7JV2xiE"
+DIRECT_DATABASE_URL = "postgresql://aniruddhasurse88:vLsyX5ewZ3nE@ep-summer-field-a19mpoml.ap-southeast-1.aws.neon.tech/blogs-pdb?sslmode=require"
+
+# [[kv_namespaces]]
+# binding = "MY_KV_NAMESPACE"
+# id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# [[r2_buckets]]
+# binding = "MY_BUCKET"
+# bucket_name = "my-bucket"
+
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "my-database"
+# database_id = ""

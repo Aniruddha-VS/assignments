@@ -4,7 +4,7 @@ import { withAccelerate } from "@prisma/extension-accelerate";
 import { env } from "hono/adapter";
 import { sign } from "hono/jwt";
 import { JWT_SECRET } from "../../config";
-import { signinInput, signupInput, SigninType } from "@asurse/common-app";}
+import { signinInput, signupInput, SigninType } from "@asurse/common-app";
 import { deleteCookie, setSignedCookie } from "hono/cookie";
 
 const COOKIE_NAME = "blogs-app";
@@ -27,17 +27,17 @@ async function hashPassword(password: string, salt: string): Promise<string> {
 }
 
 app.post("/signup", async (c) => {
-  const body:  {
+  const body: {
     username: string;
     email: string;
     password: string;
   } = await c.req.json();
 
-  const { success } = signupInput.safeParse(body)
+  const { success } = signupInput.safeParse(body);
 
   if (!success) {
     c.status(400);
-    return c.json({error: "invalid input"})
+    return c.json({ error: "invalid input" });
   }
 
   const { DATABASE_URL } = env<{ DATABASE_URL: string }>(c);
@@ -111,13 +111,12 @@ app.post("/signin", async (c) => {
     password: string;
   } = await c.req.json();
 
-  const { success } = signinInput.safeParse(body)
+  const { success } = signinInput.safeParse(body);
 
   if (!success) {
     c.status(400);
-    return c.json({error: "invalid input"})
+    return c.json({ error: "invalid input" });
   }
-
 
   console.log("Body", body);
 
